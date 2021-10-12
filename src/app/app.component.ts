@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   displayedColumns = ['name','username','email','gender'];
   dataSource!:MatTableDataSource<any>;
   apiResponse:any = [];
+  genderOptions : any = [];
 
   @ViewChild('paginator') paginator! : MatPaginator; 
   @ViewChild(MatSort) matSort! : MatSort;
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit {
     this.service.getUserData().subscribe((response:any) =>{
       this.apiResponse = response;
       this.dataSource = new MatTableDataSource(response);
+      this.genderOptions = _.uniq(response.map((item:any) => item['gender']));
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.matSort;
     })

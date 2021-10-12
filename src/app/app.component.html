@@ -8,10 +8,13 @@
     
     <mat-form-field appearance="fill">
       <mat-select (selectionChange)="onChange($event)">
-        <mat-option value="male">Male</mat-option>
-        <mat-option value="female">Female</mat-option>
+        <!-- <mat-option value="male">Male</mat-option>
+        <mat-option value="female">Female</mat-option> -->
+        <mat-option [value]="item" *ngFor="let item of genderOptions">
+          {{item}}
+        </mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field>  
 
   </div>
   <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
